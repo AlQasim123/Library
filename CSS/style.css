@@ -9,11 +9,41 @@ body {
 /* Start Header */
 header {
   padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 h1 {
-  color: #03A9F4;
+  color: #03a9f4;
   font-size: 26px;
 }
 /* End Header */
+/* Start Main */
+main {
+  overflow: auto;
+}
+.books {
+  min-height: calc(100vh - 71px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+.add {
+  display: block;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background-color: #03a9f4;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.2);
+}
+.add:hover {
+  background-color: #02afff;
+}
+/* End Main */
