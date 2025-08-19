@@ -28,6 +28,67 @@ main {
   gap: 20px;
   padding: 20px;
 }
+.book {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 250px;
+  border: 2px solid #03a9f4;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 0 10px 10px 0;
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+  transition: margin 0.3s;
+}
+.book:hover {
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
+.book h2 {
+  color: #03a9f4;
+  word-break: break-word;
+}
+.book .info {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  background-color: rgba(3, 168, 244, 0.8);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+.book:hover .info {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+.book p,
+.book span {
+  overflow: hidden;
+  width: 0;
+  opacity: 0;
+  font-size: 0;
+  transition: opacity 1s, font-size 0.9s;
+}
+.book:hover p,
+.book:hover span {
+  width: auto;
+  font-size: 16px;
+  opacity: 1;
+}
 .add {
   display: block;
   position: fixed;

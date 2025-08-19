@@ -55,17 +55,23 @@ function displayBooks() {
     const card = document.createElement("article");
     card.className = "book";
     card.setAttribute("data-id", book.id);
+    
+    const info = document.createElement("div")
+    info.className = "info"
+
     const bookTitle = document.createElement("h2");
     const bookAuthur = document.createElement("p");
     const bookPages = document.createElement("span");
 
     bookTitle.textContent = book.title;
-    bookAuthur.textContent = book.authur;
-    bookPages.textContent = book.pages;
+    bookAuthur.textContent = `Author: ${book.authur}`;
+    bookPages.textContent = `Pages: ${book.pages}`;
 
+    info.appendChild(bookAuthur);
+    info.appendChild(bookPages);
+    
     card.appendChild(bookTitle);
-    card.appendChild(bookAuthur);
-    card.appendChild(bookPages);
+    card.appendChild(info)
 
     container.appendChild(card);
   }
