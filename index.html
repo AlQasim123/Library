@@ -8,17 +8,36 @@
     <link rel="stylesheet" href="CSS/style.css" />
   </head>
   <body>
-    <div class="wrapper">
-      <!-- Start Header -->
-      <header>
-        <h1>My Library</h1>
-      </header>
-      <!-- Start Main -->
-      <main>
-        <section class="books"></section>
-        <button class="add">+</button>
-      </main>
-    </div>
+    <!-- Start Header -->
+    <header>
+      <h1>My Library</h1>
+    </header>
+    <!-- Start Main -->
+    <main>
+      <section class="books"></section>
+      <button class="add">+</button>
+    </main>
+    <dialog>
+      <form>
+        <h2>New Book</h2>
+        <div class="field">
+          <label for="title">Title</label>
+          <input id="title" type="text" name="title" />
+        </div>
+        <div class="field">
+          <label for="authur">Authur</label>
+          <input id="authur" type="text" name="authur" />
+        </div>
+        <div class="field">
+          <label for="pages">Pages</label>
+          <input id="pages" type="text" name="pages" />
+        </div>
+        <div class="menu">
+          <button class="cancel">Cancel</button>
+          <button class="confirm">Add</button>
+        </div>
+      </form>
+    </dialog>
     <!-- JS Main File -->
     <script src="JS/main.js"></script>
   </body>
