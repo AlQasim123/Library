@@ -101,7 +101,7 @@ main {
   background-color: red;
   color: white;
   overflow: hidden;
-  transition: all .3s;
+  transition: all 0.3s;
   opacity: 0;
   cursor: pointer;
 }
@@ -151,7 +151,7 @@ form h2 {
   margin-bottom: 20px;
 }
 .field {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .field label {
   display: block;
@@ -229,5 +229,57 @@ label:has(+ :not(:placeholder-shown)) {
 .menu .cancel:hover {
   background-color: red;
   color: white;
+}
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  color: red;
+  transition: color 0.3s;
+}
+.toggle::after {
+  content: "No";
+  color: red;
+  transition: color 0.3s;
+}
+.toggle:has(> :checked),
+.toggle:has(> :checked)::after {
+  content: "Yes";
+  color: #03a9f4;
+}
+.toggle input {
+  display: none;
+}
+.toggle .coustome {
+  position: relative;
+  background-color: white;
+  border-radius: 20px;
+  height: 20px;
+  width: 40px;
+  border: 1px solid red;
+  box-shadow: 0 0 5px red;
+  transition: box-shadow 0.3s;
+}
+.toggle .coustome::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: red;
+  border-radius: 50%;
+  left: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: left 0.3s;
+}
+.toggle input:checked + .coustome {
+  border-color: #03a9f4;
+  box-shadow: 0 0 5px #03a9f4;
+}
+.toggle input:checked + .coustome::before {
+  background-color: #03a9f4;
+  left: 20px;
 }
 /* End Dialog */
