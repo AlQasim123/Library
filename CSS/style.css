@@ -47,3 +47,99 @@ main {
   background-color: #02afff;
 }
 /* End Main */
+/* Start Dialog */
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+}
+form h2 {
+  text-align: center;
+  color: #03a9f4;
+  margin-bottom: 20px;
+}
+.field {
+  margin-bottom: 20px;
+}
+.field label {
+  display: block;
+  color: #02afff;
+  margin-bottom: 5px;
+  font-size: 12px;
+  opacity: 0;
+  transition: color 0.3s, opacity 0.3s;
+}
+label:has(+ :focus),
+label:has(+ :not(:placeholder-shown)) {
+  opacity: 1;
+}
+.field label:has(+ :invalid) {
+  color: red;
+}
+.field input {
+  display: block;
+  border: 2px solid #03a9f4;
+  border-radius: 8px;
+  padding: 5px 10px;
+  color: #03a9f4;
+  font-size: 16px;
+  letter-spacing: 1px;
+  transition: color 0.3s, box-shadow 0.2s;
+}
+.field input:focus {
+  outline: none;
+}
+.field input::placeholder {
+  color: #03a9f4;
+  font-size: 14px;
+  transition: opacity 0.3s;
+}
+.field input:focus::placeholder {
+  opacity: 0;
+}
+.field input:not(:placeholder-shown):valid,
+.field input:focus:valid {
+  box-shadow: 0 0 5px #03a9f4;
+}
+.field input:not(:placeholder-shown):invalid,
+.field input:focus:invalid {
+  border: 2px solid red;
+  box-shadow: 0 0 5px red;
+  color: red;
+}
+.menu {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.menu button {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 20px;
+  border-width: 1px;
+  border-style: solid;
+  background-color: #fff;
+  border-radius: 16px;
+  transition: color 0.3s, background-color 0.3s;
+}
+.menu .confirm {
+  border-color: #03a9f4;
+  color: #03a9f4;
+}
+.menu .cancel {
+  color: red;
+  border-color: red;
+}
+.menu .confirm:hover {
+  background-color: #03a9f4;
+  color: white;
+}
+.menu .cancel:hover {
+  background-color: red;
+  color: white;
+}
+/* End Dialog */

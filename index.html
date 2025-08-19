@@ -17,24 +17,44 @@
       <section class="books"></section>
       <button class="add">+</button>
     </main>
+    <!-- Start Dialog -->
     <dialog>
       <form>
         <h2>New Book</h2>
         <div class="field">
-          <label for="title">Title</label>
-          <input id="title" type="text" name="title" />
+          <label for="title">TITLE</label>
+          <input
+            id="title"
+            type="text"
+            name="title"
+            required
+            placeholder="TITLE"
+          />
         </div>
         <div class="field">
-          <label for="authur">Authur</label>
-          <input id="authur" type="text" name="authur" />
+          <label for="authur">AUTHUR</label>
+          <input
+            id="authur"
+            type="text"
+            name="authur"
+            required
+            placeholder="AUTHUR"
+          />
         </div>
         <div class="field">
-          <label for="pages">Pages</label>
-          <input id="pages" type="text" name="pages" />
+          <label for="pages">PAGES</label>
+          <input
+            id="pages"
+            type="number"
+            name="pages"
+            required
+            placeholder="PAGES"
+            min="24"
+          />
         </div>
         <div class="menu">
-          <button class="cancel">Cancel</button>
           <button class="confirm">Add</button>
+          <button class="cancel">Cancel</button>
         </div>
       </form>
     </dialog>
