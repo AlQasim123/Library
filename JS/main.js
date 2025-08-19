@@ -55,9 +55,21 @@ function displayBooks() {
     const card = document.createElement("article");
     card.className = "book";
     card.setAttribute("data-id", book.id);
-    
-    const info = document.createElement("div")
-    info.className = "info"
+
+    const info = document.createElement("div");
+    info.className = "info";
+
+    const delBtn = document.createElement("button");
+    delBtn.className = "delete";
+    delBtn.textContent = "X";
+    delBtn.addEventListener("click", (e) => {
+      myLibrary.forEach((bk, index) => {
+        if (bk.id === card.getAttribute("data-id")) {
+          myLibrary.splice(index, 1);
+        }
+      });
+      container.removeChild(card);
+    });
 
     const bookTitle = document.createElement("h2");
     const bookAuthur = document.createElement("p");
@@ -69,9 +81,10 @@ function displayBooks() {
 
     info.appendChild(bookAuthur);
     info.appendChild(bookPages);
-    
+
     card.appendChild(bookTitle);
-    card.appendChild(info)
+    card.appendChild(info);
+    card.appendChild(delBtn);
 
     container.appendChild(card);
   }

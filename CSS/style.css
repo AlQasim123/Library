@@ -89,6 +89,33 @@ main {
   font-size: 16px;
   opacity: 1;
 }
+.book .delete {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 0;
+  height: 0;
+  font-size: 10px;
+  border: 1px none red;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  overflow: hidden;
+  transition: all .3s;
+  opacity: 0;
+  cursor: pointer;
+}
+.book:hover .delete {
+  top: 5px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+  border-style: solid;
+  opacity: 1;
+}
+.book:hover .delete:hover {
+  box-shadow: 0 0 5px red;
+}
 .add {
   display: block;
   position: fixed;
