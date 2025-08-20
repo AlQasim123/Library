@@ -1,48 +1,48 @@
 const myLibrary = [];
 
-function Book(title, authur, pages, read) {
+function Book(title, author, pages, read) {
   // the constructor...
   this.title = title;
-  this.authur = authur;
+  this.author = author;
   this.pages = pages;
   this.read = read;
   this.id = crypto.randomUUID();
 }
-Book.prototype.readToggle = function () {
+Book.prototype.toggleReadStatus = function () {
   this.read = this.read ? false : true;
 };
 function addBookToLibrary() {
   // take params, create a book then store it in the array
-  const tempBook = new Book(
-    titleIn.value,
-    authurIn.value,
-    pagesIn.value,
-    checkRead.checked
+  const newBook = new Book(
+    titleInput.value,
+    authorInput.value,
+    pagesInput.value,
+    formReadCheckbox.checked
   );
-  myLibrary.push(tempBook);
+  myLibrary.push(newBook);
 }
 
 // open the dialog btn
-const addBtn = document.querySelector(".add");
+const addBookButton = document.querySelector(".add-book-button");
 
 // dialog & form element
-const popUp = document.querySelector("dialog");
+const addBookDialog = document.querySelector("dialog");
 const bookForm = document.querySelector("form");
-const titleIn = document.querySelector("#title");
-const authurIn = document.querySelector("#authur");
-const pagesIn = document.querySelector("#pages");
-const checkRead = document.querySelector("#check-read");
-const cancelBtn = document.querySelector(".cancel");
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pages");
+const formReadCheckbox = document.querySelector("#check-read");
+const cancelButton = document.querySelector(".cancel-button");
 
-// the container for books
-const container = document.querySelector(".books");
+// the booksContainer for books
+const booksContainer = document.querySelector(".books");
 
 // Show The Pop Up And Close It
-addBtn.addEventListener("click", () => {
-  popUp.showModal();
+addBookButton.addEventListener("click", () => {
+  addBookDialog.showModal();
 });
-cancelBtn.addEventListener("click", () => {
-  popUp.close();
+cancelButton.addEventListener("click", () => {
+  addBookDialog.close();
 });
 
 // Submit And Take The Data
@@ -51,78 +51,76 @@ bookForm.addEventListener("submit", (e) => {
   if (bookForm.checkValidity()) {
     addBookToLibrary();
     displayBooks();
-    popUp.close();
+    addBookDialog.close();
     bookForm.reset();
   }
 });
 
 // Display the Books
 function displayBooks() {
-  // take the book from the array and display it on the web after cleaning the container
-  container.replaceChildren("");
+  // take the book from the array and display it on the web after cleaning the booksContainer
+  booksContainer.replaceChildren("");
   for (book of myLibrary) {
-    const card = document.createElement("article");
-    card.className = "book";
-    card.setAttribute("data-id", book.id);
+    const bookCard = document.createElement("article");
+    bookCard.className = "book";
+    bookCard.setAttribute("data-id", book.id);
 
-    const info = document.createElement("div");
-    info.className = "info";
+    const bookDetails = document.createElement("div");
+    bookDetails.className = "book-details";
 
     // the delete btn for the book
-    const delBtn = document.createElement("button");
-    delBtn.className = "delete";
-    delBtn.textContent = "X";
-    delBtn.addEventListener("click", (e) => {
-      myLibrary.forEach((bk, index) => {
-        if (bk.id === card.getAttribute("data-id")) {
-          myLibrary.splice(index, 1);
-        }
-      });
-      container.removeChild(card);
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "delete";
+    deleteButton.textContent = "X";
+    deleteButton.addEventListener("click", () => {
+      const bookId = bookCard.getAttribute("data-id");
+      const bookIndex = myLibrary.findIndex((book) => book.id === bookId);
+      if (bookIndex !== -1) {
+        myLibrary.splice(bookIndex, 1);
+        displayBooks();
+      }
     });
 
     // the read toggle for the book
-    const toggleRead = document.createElement("label");
-    toggleRead.className = "book-mark-label";
-    const toggleCheck = document.createElement("input");
-    toggleCheck.type = "checkbox";
-    toggleCheck.className = "book-mark";
-    toggleCheck.checked = book.read;
-    const customMark = document.createElement("span");
-    customMark.className = "custom-mark";
+    const readToggleLabel = document.createElement("label");
+    readToggleLabel.className = "read-toggle-label";
+    const readCheckbox = document.createElement("input");
+    readCheckbox.type = "checkbox";
+    readCheckbox.className = "book-mark";
+    readCheckbox.checked = book.read;
+    const readToggleIndicator = document.createElement("span");
+    readToggleIndicator.className = "read-toggle-indicator";
 
-    toggleRead.appendChild(toggleCheck);
-    toggleRead.appendChild(customMark);
+    readToggleLabel.appendChild(readCheckbox);
+    readToggleLabel.appendChild(readToggleIndicator);
 
     const bookTitle = document.createElement("h2");
-    const bookAuthur = document.createElement("p");
-    bookAuthur.className = "authur-name";
+    const bookAuthor = document.createElement("p");
     const bookPages = document.createElement("span");
-    bookPages.className = "book-pages";
-    const stats = document.createElement("span");
+    const readStatus = document.createElement("span");
 
     bookTitle.textContent = book.title;
-    bookAuthur.textContent = `Author: ${book.authur}`;
+    bookAuthor.textContent = `Author: ${book.author}`;
     bookPages.textContent = `Pages: ${book.pages}`;
-    stats.textContent = `Status: ${book.read ? "Read" : "Not Read"}`;
+    readStatus.textContent = `Status: ${book.read ? "Read" : "Not Read"}`;
 
-    toggleCheck.addEventListener("change", (e) => {
-      myLibrary.forEach((bkread) => {
-        if (bkread.id === card.getAttribute("data-id")) {
-          bkread.readToggle();
-        }
-      });
-      stats.textContent = `Status: ${e.target.checked ? "Read" : "Not Read"}`;
+    readCheckbox.addEventListener("change", (e) => {
+      const bookId = bookCard.getAttribute("data-id");
+      const book = myLibrary.find((book) => book.id === bookId);
+      if (book) {
+        book.toggleReadStatus();
+        readStatus.textContent = `Status: ${book.read ? "Read" : "Not Read"}`;
+      }
     });
-    
-    info.appendChild(bookAuthur);
-    info.appendChild(bookPages);
-    info.appendChild(stats);
 
-    card.appendChild(bookTitle);
-    card.appendChild(info);
-    card.appendChild(delBtn);
-    card.appendChild(toggleRead);
-    container.appendChild(card);
+    bookDetails.appendChild(bookAuthor);
+    bookDetails.appendChild(bookPages);
+    bookDetails.appendChild(readStatus);
+
+    bookCard.appendChild(bookTitle);
+    bookCard.appendChild(bookDetails);
+    bookCard.appendChild(deleteButton);
+    bookCard.appendChild(readToggleLabel);
+    booksContainer.appendChild(bookCard);
   }
 }

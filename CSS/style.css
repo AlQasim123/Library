@@ -51,7 +51,7 @@ main {
   color: #03a9f4;
   word-break: break-word;
 }
-.book .info {
+.book .book-details {
   position: absolute;
   left: 50%;
   bottom: 50%;
@@ -68,21 +68,21 @@ main {
   transition: all 0.3s;
   overflow: hidden;
 }
-.book:hover .info {
+.book:hover .book-details {
   left: 0;
   bottom: 0;
   width: 100%;
   height: 100%;
   border-radius: 0;
 }
-.book .info * {
+.book .book-details * {
   overflow: hidden;
   width: 0;
   opacity: 0;
   font-size: 0;
   transition: opacity 1s, font-size 0.9s;
 }
-.book:hover .info * {
+.book:hover .book-details * {
   width: auto;
   font-size: 16px;
   opacity: 1;
@@ -114,7 +114,7 @@ main {
 .book:hover .delete:hover {
   box-shadow: 0 0 5px red;
 }
-.book .book-mark-label {
+.book .read-toggle-label {
   position: absolute;
   left: 10px;
   top: -90px;
@@ -123,13 +123,13 @@ main {
   height: 100px;
   cursor: pointer;
 }
-.book .book-mark-label .book-mark {
+.book .read-toggle-label .book-mark {
   display: none;
 }
-.book .book-mark-label:has(> :checked) {
+.book .read-toggle-label:has(> :checked) {
   top: 0;
 }
-.book .book-mark-label .custom-mark {
+.book .read-toggle-label .read-toggle-indicator {
   position: absolute;
   bottom: -15px;
   left: 0;
@@ -137,7 +137,7 @@ main {
   border-style: solid;
   border-color: transparent #2196f3 transparent #2196f3;
 }
-.add {
+.add-book-button {
   display: block;
   position: fixed;
   bottom: 25px;
@@ -152,7 +152,7 @@ main {
   cursor: pointer;
   box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.2);
 }
-.add:hover {
+.add-book-button:hover {
   background-color: #02afff;
 }
 /* End Main */
@@ -239,7 +239,7 @@ label:has(+ :not(:placeholder-shown)) {
   border-color: #03a9f4;
   color: #03a9f4;
 }
-.menu .cancel {
+.menu .cancel-button {
   color: red;
   border-color: red;
 }
@@ -247,7 +247,7 @@ label:has(+ :not(:placeholder-shown)) {
   background-color: #03a9f4;
   color: white;
 }
-.menu .cancel:hover {
+.menu .cancel-button:hover {
   background-color: red;
   color: white;
 }
@@ -259,6 +259,7 @@ label:has(+ :not(:placeholder-shown)) {
   padding: 10px 0;
   color: red;
   transition: color 0.3s;
+  cursor: pointer;
 }
 .toggle::after {
   content: "No";
@@ -273,7 +274,7 @@ label:has(+ :not(:placeholder-shown)) {
 .toggle input {
   display: none;
 }
-.toggle .coustome {
+.toggle .custom {
   position: relative;
   background-color: white;
   border-radius: 20px;
@@ -283,7 +284,7 @@ label:has(+ :not(:placeholder-shown)) {
   box-shadow: 0 0 5px red;
   transition: box-shadow 0.3s;
 }
-.toggle .coustome::before {
+.toggle .custom::before {
   content: "";
   position: absolute;
   width: 16px;
@@ -295,11 +296,11 @@ label:has(+ :not(:placeholder-shown)) {
   transform: translateY(-50%);
   transition: left 0.3s;
 }
-.toggle input:checked + .coustome {
+.toggle input:checked + .custom {
   border-color: #03a9f4;
   box-shadow: 0 0 5px #03a9f4;
 }
-.toggle input:checked + .coustome::before {
+.toggle input:checked + .custom::before {
   background-color: #03a9f4;
   left: 20px;
 }
