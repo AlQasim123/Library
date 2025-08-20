@@ -1,16 +1,24 @@
 const myLibrary = [];
 
-function Book(title, authur, pages) {
+function Book(title, authur, pages, read) {
   // the constructor...
   this.title = title;
   this.authur = authur;
   this.pages = pages;
+  this.read = read;
   this.id = crypto.randomUUID();
 }
-
+Book.prototype.readToggle = function () {
+  this.read = this.read ? false : true;
+};
 function addBookToLibrary() {
   // take params, create a book then store it in the array
-  const tempBook = new Book(titleIn.value, authurIn.value, pagesIn.value);
+  const tempBook = new Book(
+    titleIn.value,
+    authurIn.value,
+    pagesIn.value,
+    checkRead.checked
+  );
   myLibrary.push(tempBook);
 }
 
@@ -23,6 +31,7 @@ const bookForm = document.querySelector("form");
 const titleIn = document.querySelector("#title");
 const authurIn = document.querySelector("#authur");
 const pagesIn = document.querySelector("#pages");
+const checkRead = document.querySelector("#check-read");
 const cancelBtn = document.querySelector(".cancel");
 
 // the container for books
@@ -59,6 +68,7 @@ function displayBooks() {
     const info = document.createElement("div");
     info.className = "info";
 
+    // the delete btn for the book
     const delBtn = document.createElement("button");
     delBtn.className = "delete";
     delBtn.textContent = "X";
@@ -71,21 +81,48 @@ function displayBooks() {
       container.removeChild(card);
     });
 
+    // the read toggle for the book
+    const toggleRead = document.createElement("label");
+    toggleRead.className = "book-mark-label";
+    const toggleCheck = document.createElement("input");
+    toggleCheck.type = "checkbox";
+    toggleCheck.className = "book-mark";
+    toggleCheck.checked = book.read;
+    const customMark = document.createElement("span");
+    customMark.className = "custom-mark";
+
+    toggleRead.appendChild(toggleCheck);
+    toggleRead.appendChild(customMark);
+
     const bookTitle = document.createElement("h2");
     const bookAuthur = document.createElement("p");
+    bookAuthur.className = "authur-name";
     const bookPages = document.createElement("span");
+    bookPages.className = "book-pages";
+    const stats = document.createElement("span");
 
     bookTitle.textContent = book.title;
     bookAuthur.textContent = `Author: ${book.authur}`;
     bookPages.textContent = `Pages: ${book.pages}`;
+    stats.textContent = `Status: ${book.read ? "Read" : "Not Read"}`;
 
+    toggleCheck.addEventListener("change", (e) => {
+      myLibrary.forEach((bkread) => {
+        if (bkread.id === card.getAttribute("data-id")) {
+          bkread.readToggle();
+        }
+      });
+      stats.textContent = `Status: ${e.target.checked ? "Read" : "Not Read"}`;
+    });
+    
     info.appendChild(bookAuthur);
     info.appendChild(bookPages);
+    info.appendChild(stats);
 
     card.appendChild(bookTitle);
     card.appendChild(info);
     card.appendChild(delBtn);
-
+    card.appendChild(toggleRead);
     container.appendChild(card);
   }
 }

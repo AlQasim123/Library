@@ -75,16 +75,14 @@ main {
   height: 100%;
   border-radius: 0;
 }
-.book p,
-.book span {
+.book .info * {
   overflow: hidden;
   width: 0;
   opacity: 0;
   font-size: 0;
   transition: opacity 1s, font-size 0.9s;
 }
-.book:hover p,
-.book:hover span {
+.book:hover .info * {
   width: auto;
   font-size: 16px;
   opacity: 1;
@@ -115,6 +113,29 @@ main {
 }
 .book:hover .delete:hover {
   box-shadow: 0 0 5px red;
+}
+.book .book-mark-label {
+  position: absolute;
+  left: 10px;
+  top: -90px;
+  background-color: #2196f3;
+  width: 20px;
+  height: 100px;
+  cursor: pointer;
+}
+.book .book-mark-label .book-mark {
+  display: none;
+}
+.book .book-mark-label:has(> :checked) {
+  top: 0;
+}
+.book .book-mark-label .custom-mark {
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  border-width: 0 10px 15px 10px;
+  border-style: solid;
+  border-color: transparent #2196f3 transparent #2196f3;
 }
 .add {
   display: block;
